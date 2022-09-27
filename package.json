@@ -1,0 +1,24 @@
+{
+  "name": "f1-rankings",
+  "version": "1.0.0",
+  "description": "Display rankings of F1 drivers and teams",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MpVrooyeN/F1-Rankings.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MpVrooyeN/F1-Rankings/issues"
+  },
+  "homepage": "https://github.com/MpVrooyeN/F1-Rankings#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2"
+  }
+}
