@@ -1,19 +1,30 @@
 import ReactDOM from 'react-dom/client';
-import React from 'react';
 import $ from 'jquery';
+import ReactTable from './Table';
 
-function renderTitle(titleString) {
-    ReactDOM.createRoot(document.getElementById('root')).render(React.createElement('h1', {}, titleString));
+let urlResponse = ''
+
+function getDriverStandings() {
+
+    $.get({
+        "url": "http://ergast.com/api/f1/current/constructorStandings.json",
+        "method": "GET",
+        "timeout": 0,
+        "async": false,
+        "success": function (text) {
+            urlResponse = text;
+        }
+    })
+    return urlResponse
 }
 
-function renderTable() {
-    let table = document.createElement('table')
-    ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(table))
+function parseJSON(jsonFile) {
+    return (jsonFile["MRData"]["StandingsTable"]['StandingsLists']['0']['ConstructorStandings'])
 }
 
-function RenderWebPage() {
-    renderTable();
-    renderTitle("F1 Rankings");
+
+function App() {
+    ReactDOM.createRoot(document.getElementById('root')).render(new ReactTable().render(parseJSON(getDriverStandings())));
 }
 
-RenderWebPage();
+App()
