@@ -1,6 +1,5 @@
 body {
-
-    background-color: black;
+    background-color: white;
     padding: 40px;
 }
 
@@ -16,14 +15,11 @@ th {
     padding-bottom: 10px;
     border: 1px solid;
     border-style: outset;
+    border: solid 1px black;
 }
 
-table { 
-    border-collapse: separate; 
-    border-spacing: 0 10px; 
-    margin-top: -10px; /* correct offset on first border spacing if desired */
-}
 td {
+    
     border: solid 1px #000;
     border-style: solid none;
     padding: 10px;
@@ -40,11 +36,9 @@ td:last-child {
     border-top-right-radius: 10px; 
 }
 
-
-
 div {
     margin: auto;
-    width: 50%;
+    width: 100%;
 
 }
 
