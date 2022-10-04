@@ -12,7 +12,7 @@ export const BasicTable = () => {
 
     useEffect(() => {
         // toggleData()
-    } )
+    }, [data] )
 
     return (
         <table {...getTableProps}>
