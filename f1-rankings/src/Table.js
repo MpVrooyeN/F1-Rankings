@@ -5,6 +5,8 @@ class ReactTable extends Component {
 
     render(data) { //Whenever our class runs, the render method will be called automatically. It may have already been defined in the constructor behind the scene.
 
+        let tbdy = document.createElement('tbody');
+
         function createTable() {
             return document.getElementById("root");
         }
@@ -13,13 +15,52 @@ class ReactTable extends Component {
             return Object.keys(JSON[key])
         }
 
+        function removePositionText(newData) {
+            let resultData = newData
+            resultData = Object.values(resultData).map(x => {
+                return Object.keys(x).filter(key =>
+                    key !== 'positionText').reduce((obj, key) => {
+                        obj[key] = x[key];
+                        return obj;
+                    }, {}
+                    )
+            })
+            return resultData
+        }
+
+        function createTableRow(rowData) {
+
+            let td = ''
+            let tr = ''
+            Object.values(rowData).map(x => {
+                tr = document.createElement('tr')
+                Object.keys(x).map(y => {
+                    td = document.createElement('td')
+                    switch (y) {
+                        case 'wins':
+                            if (x[y] === '0') {
+                                td.appendChild(document.createTextNode('-'))
+                            } else
+                                td.appendChild(document.createTextNode(x[y]))
+                            break
+                        case 'Constructor':
+                            td.appendChild(document.createTextNode(x[y]['name']))
+                            break
+                        default:
+                            td.appendChild(document.createTextNode(x[y]))
+                            break
+                    }
+                    tr.appendChild(td)
+                })
+                // console.log(x)
+                tbdy.appendChild(tr)
+            })
+        }
+
         function createTableBody() {
-            let tbdy = document.createElement('tbody');
             tbdy.appendChild(getHeading())
             tbdy.appendChild(createTableHeaders());
-            for (let j in createTableData()) {
-                tbdy.appendChild(createTableData()[j]);
-            }
+            createTableRow(removePositionText(data))
 
             return tbdy
         }
@@ -51,44 +92,12 @@ class ReactTable extends Component {
                     } else {
                         h2.appendChild(document.createTextNode(element.charAt(0).toUpperCase() + element.slice(1).toLowerCase()));
                     }
-
                     th2.appendChild(h2)
                     thr2.appendChild(th2)
                 }
 
             }
             return thr2
-        }
-
-        function tableDataPerRow(tableRow, rowData, indexRow, indexData) {
-            if (indexData === "Constructor") {
-                rowData.appendChild(document.createTextNode(JSON.stringify(data[indexRow][indexData]['name']).slice(1, -1)));
-                rowData.setAttribute('width', '100%')
-            } else if (indexData === "wins") {
-                if (JSON.stringify(data[indexRow][indexData]).slice(1, -1) === "0") {
-                    rowData.appendChild(document.createTextNode('-'));
-                } else {
-                    rowData.appendChild(document.createTextNode(JSON.stringify(data[indexRow][indexData]).slice(1, -1)));
-                }
-            } else {
-                rowData.appendChild(document.createTextNode(JSON.stringify(data[indexRow][indexData]).slice(1, -1)));
-            }
-            return tableRow.appendChild(rowData)
-        }
-
-        function createTableData() {
-            let returnV = []
-            for (let k in data) {
-                let tr = document.createElement('tr');
-                for (let j in data[k]) {
-                    let td = document.createElement('td');
-                    if (j !== "positionText") {
-                        tableDataPerRow(tr, td, k, j)
-                    }
-                }
-                returnV.push(tr)
-            }
-            return returnV
         }
         return createTable().appendChild(createTableBody());
     }
