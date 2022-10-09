@@ -1,44 +1,39 @@
-import React, {useEffect, useMemo} from 'react'
-import { useConstuctorStandings } from "../../queries/standing.query";
+import React, { useMemo } from 'react'
 import { useTable } from 'react-table'
-import { COLUMNS } from './Columns'
 import './Table.css'
+import MaUTable from '@material-ui/core/Table'
+import { TableBody, TableHead, TableRow } from '@mui/material';
 
-export const BasicTable = () => {
-    
-    const {data} = useConstuctorStandings();
-    const columns = useMemo(() => COLUMNS, [])
-    const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = useTable({columns, data})
-
-    useEffect(() => {
-        // toggleData()
-    }, [data] )
+export default function BasicTable(props) {
+    const data = props[0].tableData;
+    const columns = useMemo(() => props[0].col, [props])
+    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data })
 
     return (
-        <table {...getTableProps}>
-            <thead>
+        <MaUTable {...getTableProps}>
+            <TableHead>
                 {headerGroups.map((headerGroup) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
+                    <TableRow {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map((column) => (
                             <th {...column.getHeaderProps()}>{column.render('Header')}</th>
                         ))}
-                    </tr>
+                    </TableRow>
                 ))
-            }
-            </thead>
-            <tbody {...getTableBodyProps()}>
+                }
+            </TableHead>
+            <TableBody {...getTableBodyProps()}>
                 {rows.map((row) => {
                     prepareRow(row)
                     return (
-                        <tr {...row.getRowProps()}>
+                        <TableRow {...row.getRowProps()}>
                             {row.cells.map((cell) => {
                                 return (
                                     <td {...cell.getCellProps()}>{cell.render('Cell')}</td>)
-                        })
-                        }
-                    </tr>)
+                            })
+                            }
+                        </TableRow>)
                 })}
-            </tbody>
-        </table>
+            </TableBody>
+        </MaUTable>
     )
 }
