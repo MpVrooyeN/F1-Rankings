@@ -1,30 +1,18 @@
-import ReactDOM from 'react-dom/client';
-import $ from 'jquery';
-import ReactTable from './Table';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
-let urlResponse = ''
+import App from "./App";
 
-function getDriverStandings() {
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
 
-    $.get({
-        "url": "http://ergast.com/api/f1/current/constructorStandings.json",
-        "method": "GET",
-        "timeout": 0,
-        "async": false,
-        "success": function (text) {
-            urlResponse = text;
-        }
-    })
-    return urlResponse
-}
+const queryClient = new QueryClient({});
 
-function parseJSON(jsonFile) {
-    return (jsonFile["MRData"]["StandingsTable"]['StandingsLists']['0']['ConstructorStandings'])
-}
-
-
-function App() {
-    ReactDOM.createRoot(document.getElementById('root')).render(new ReactTable().render(parseJSON(getDriverStandings())));
-}
-
-App()
+root.render(
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  </StrictMode>
+);
