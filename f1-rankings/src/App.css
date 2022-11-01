@@ -3,45 +3,6 @@ body {
     padding: 40px;
 }
 
-th {
-    background-color: #e22420;
-    text-align: center;
-    font-family: 'Titllium';
-    font-weight: bold;
-    border-collapse: collapse;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 1px solid;
-    border-style: outset;
-    border: solid 1px black;
-}
-
-td {
-    
-    border: solid 1px #000;
-    border-style: solid none;
-    padding: 10px;
-    background-color: white;
-}
-td:first-child {
-    border-left-style: solid;
-    border-top-left-radius: 10px; 
-    border-bottom-left-radius: 10px;
-}
-td:last-child {
-    border-right-style: solid;
-    border-bottom-right-radius: 10px; 
-    border-top-right-radius: 10px; 
-}
-
-div {
-    margin: auto;
-    width: 100%;
-
-}
-
 @font-face {
     font-family: Titllium;
     src: url(Formula1-Regular.otf);
