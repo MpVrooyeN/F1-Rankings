@@ -21,18 +21,3 @@ export const useStandings = () => {
     }
   });
 };
-
-// get single standing example
-export const useStanding = () => {
-  const { create } = useAxios();
-
-  return useQuery(["standings"], async () => {
-    try {
-      const result = await create.get("constructorStanding.json/1");
-
-      return result?.data?.MRData?.ConstructorStandings;
-    } catch (e) {
-      console.log("query error:", e);
-    }
-  });
-};
