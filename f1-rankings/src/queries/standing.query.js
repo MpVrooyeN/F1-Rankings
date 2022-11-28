@@ -14,8 +14,7 @@ export const useStandings = () => {
       const result = await create.get("constructorStandings.json");
 
       // ?. optional chaining
-      return result?.data?.MRData?.StandingsTable?.StandingsLists[0]
-        ?.ConstructorStandings;
+      return result?.data?.MRData?.StandingsTable?.StandingsLists[0]?.ConstructorStandings;
     } catch (e) {
       console.log("query error:", e);
     }
