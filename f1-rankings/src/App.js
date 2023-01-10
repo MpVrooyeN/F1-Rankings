@@ -1,8 +1,12 @@
 import Home from "./components/pages/Home/Home";
 import './App.css'
+import ButtonAppBar from "./components/MaterialUI/ButtonAppBar";
 
 const App = () => {
-  return <Home />;
+  return <>
+    <ButtonAppBar />
+    <Home />
+  </>;
 };
 
 export default App;

@@ -9,7 +9,8 @@ const Standings = () => {
   const {data, isLoading} = useConstuctorStandings();
   return (
     <>
-      <h1 id="heading">F1 Rankings</h1>
+      
+      {/* <h1 id="heading">F1 Rankings</h1> */}
       {/* ternary operator */}
       {isLoading && <p>Loading</p>}
       {!isLoading && data && (
