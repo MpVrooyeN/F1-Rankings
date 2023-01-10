@@ -1,5 +1,6 @@
 import { useConstuctorStandings } from "../../queries/standing.query";
 import { BasicTable } from "../Table/BasicTable";
+import React from "react";
 
 const Standings = () => {
   // react query
@@ -10,7 +11,6 @@ const Standings = () => {
   return (
     <>
       
-      {/* <h1 id="heading">F1 Rankings</h1> */}
       {/* ternary operator */}
       {isLoading && <p>Loading</p>}
       {!isLoading && data && (
