@@ -1,13 +1,18 @@
-import React, {useMemo} from 'react'
-import { useStandings } from "../../queries/standing.query";
+import React, {useEffect, useMemo} from 'react'
+import { useConstuctorStandings } from "../../queries/standing.query";
 import { useTable } from 'react-table'
 import { COLUMNS } from './Columns'
 import './Table.css'
 
 export const BasicTable = () => {
-    const {data} = useStandings();
+    
+    const {data} = useConstuctorStandings();
     const columns = useMemo(() => COLUMNS, [])
     const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = useTable({columns, data})
+
+    useEffect(() => {
+        // toggleData()
+    } )
 
     return (
         <table {...getTableProps}>
