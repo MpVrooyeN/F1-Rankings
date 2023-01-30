@@ -1,6 +1,6 @@
 import { useStandings } from "../../queries/standing.query";
 import { BasicTable } from "../Table/BasicTable";
-
+import * as React from 'react';
 const Standings = () => {
   // react query
   // data is what comes back from API
