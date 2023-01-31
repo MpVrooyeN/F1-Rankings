@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider, ToggleButton, ToggleButtonGroup  } from '@mui/material';
-import Home from "./../pages/Home/Home";
+import Standings from "./../Standings/Standings";
 
 const customTheme = createTheme({
     palette: {
@@ -30,7 +30,7 @@ export default function CustomThemeAppBarOption() {
             setTable(newTable);
         }
     };
-    return (
+    return (<>
         <ThemeProvider theme={customTheme}>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" color={"primary"}>
@@ -51,7 +51,8 @@ export default function CustomThemeAppBarOption() {
             </Toolbar>
           </AppBar>
         </Box>
-        <Home />
       </ThemeProvider>
+      <Standings />
+      </>
     );
   }
