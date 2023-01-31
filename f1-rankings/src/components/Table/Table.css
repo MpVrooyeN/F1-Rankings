@@ -2,7 +2,6 @@
 table {
     border-collapse: collapse;
     width: 100%;
-    margin: auto;
   }
   
  td, th {
@@ -44,5 +43,5 @@ h1 {
 
 @font-face {
     font-family: 'Titllium';
-    src: url(../../Formula1-Regular.otf);
+    src: url(../../fonts/Formula1-Regular.otf);
 }

@@ -1,5 +1,6 @@
 body {
     background-color: white;
+    margin: 0px
 }
 
 html {
@@ -8,5 +9,5 @@ html {
 
 @font-face {
     font-family: Titllium;
-    src: url(Formula1-Regular.otf);
+    src: url(fonts/Formula1-Regular.otf);
 }
