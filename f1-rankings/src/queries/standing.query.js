@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxios from "../hooks/axios.hook";
-import React from "react";
 
 // CRUD functions Create, Read (single/plural), Update, Delete
 // CRUD also links up to HTTP method types
@@ -8,7 +7,7 @@ import React from "react";
 // get all standings
 export const useConstuctorStandings = () => {
   const { create } = useAxios();
-  return useQuery(["standings"], async () => {
+  return useQuery(["constructorStandings"], async () => {
     try {
       let result = await create.get("constructorStandings.json");
         // ?. optional chaining
@@ -21,11 +20,11 @@ export const useConstuctorStandings = () => {
 
 export const useDriverStandings = () => {
   const { create } = useAxios();
-  return useQuery(["standings"], async () => {
+  return useQuery(["driverStandings"], async () => {
     try {
       let result = await create.get("driverStandings.json");
         // ?. optional chaining
-        return result?.data?.MRData?.StandingsTable?.StandingsLists[0]?.ConstructorStandings;
+        return result?.data?.MRData?.StandingsTable?.StandingsLists[0]?.DriverStandings;
     } catch (e) {
       console.log("query error:", e);
     }

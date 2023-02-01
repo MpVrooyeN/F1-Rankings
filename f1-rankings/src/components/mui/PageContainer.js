@@ -5,6 +5,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider, ToggleButton, ToggleButtonGroup  } from '@mui/material';
 import Standings from "./../Standings/Standings";
+import { useConstuctorStandings, useDriverStandings } from '../../queries/standing.query';
+import { useState } from 'react';
 
 const customTheme = createTheme({
     palette: {
@@ -23,25 +25,77 @@ const customTheme = createTheme({
   });
   
 
-export default function CustomThemeAppBarOption() {
-    const [table, setTable] = React.useState('left');
-    const switchTables = (event, newTable) => {
-        if (newTable !== null) {
-            setTable(newTable);
-        }
-    };
+
+
+export default function PageContainer() {
+    const [table, setTable] = React.useState('constructor');
+    const constructorData = useConstuctorStandings();
+    const constructorCol = [
+      {
+          Header: 'Team Name',
+          accessor: 'Constructor.name'
+      },
+      {
+          Header: 'Position',
+          accessor: 'position'
+      },
+      {
+          Header: 'Points',
+          accessor: 'points'
+      },
+      {
+          Header: 'Wins',
+          accessor: 'wins'
+      }
+  ]
+    const driverData = useDriverStandings();
+    const driverCol = [
+      {
+          Header: 'Driver Name',
+          accessor: 'Driver.name'
+      },
+      {
+          Header: 'Position',
+          accessor: 'position'
+      },
+      {
+          Header: 'Points',
+          accessor: 'points'
+      },
+      {
+          Header: 'Wins',
+          accessor: 'wins'
+      }
+  ]
+    const [data, setData] = React.useState(constructorData);
+    const [columns, setColumns] = useState(constructorCol)
+    const useToggle = () => {
+      const x = document.getElementById("heading");
+      if (table === 'constructor') {
+        x.innerHTML = "Driver Standings"
+        setTable('driver');
+        setData(driverData);
+        setColumns(driverCol)
+      } else {
+        x.innerHTML = "Constructor Standings"
+        setTable('constructor')
+        setData(constructorData);
+        setColumns(constructorCol);
+      }
+    }
+    
     return (<>
         <ThemeProvider theme={customTheme}>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" color={"primary"}>
             <Toolbar>
-              <Typography variant="h6" component="div" fontWeight={1000} sx={{ flexGrow: 1 }}>
+              <Typography variant="h6" id="heading" component="div" fontWeight={1000} sx={{ flexGrow: 1 }}>
                 F1 Standings
               </Typography>
               <ToggleButtonGroup
                 value={table}
                 exclusive
-                onChange={switchTables}
+                onChange={useToggle}
                 aria-label="text alignment">
                     <ToggleButton value={'constructor'}>Constructor
                     </ToggleButton>
@@ -52,7 +106,8 @@ export default function CustomThemeAppBarOption() {
           </AppBar>
         </Box>
       </ThemeProvider>
-      <Standings />
+      <Standings tableData={data} col={columns}/>      
       </>
     );
   }
+
