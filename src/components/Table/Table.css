@@ -29,6 +29,10 @@ tr:hover {background-color: #ddd;}
     border: solid 1px black;
 }
 
+th :first-of-type {
+    width: fit-content;
+}
+
 h1 {
     background-color: #e22420;
     text-align: center;
