@@ -1,0 +1,13 @@
+body {
+    background-color: white;
+    margin: 0px
+}
+
+html {
+    background-color: white;
+}
+
+@font-face {
+    font-family: Titllium;
+    src: url(fonts/Formula1-Regular.otf);
+}
