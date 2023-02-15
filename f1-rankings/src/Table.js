@@ -37,6 +37,9 @@ class ReactTable extends Component {
                 Object.keys(x).map(y => {
                     td = document.createElement('td')
                     switch (y) {
+                        case 'position':
+                            td.appendChild(document.createTextNode(x[y]))
+                            break
                         case 'wins':
                             if (x[y] === '0') {
                                 td.appendChild(document.createTextNode('-'))
