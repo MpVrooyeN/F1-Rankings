@@ -7,3 +7,4 @@ prefix component names with their
 CTRL + p - search by file name
 CTRL + shift + p - config
 convert component from: export default function PageContainer --> const Standings / export default Standings: at the bottom
+move theme provider into index
