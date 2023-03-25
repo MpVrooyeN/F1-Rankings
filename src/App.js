@@ -1,12 +1,14 @@
 import React from "react";
-import './App.css'
-import PageContainer from "./components/mui/PageContainer"
+
+import "./App.css";
+import Standings from "./components/pages/Standings";
 
 const App = () => {
-  return (<>
-    <PageContainer />
-  </>)
-            
+  return (
+    <>
+      <Standings />
+    </>
+  );
 };
 
 export default App;

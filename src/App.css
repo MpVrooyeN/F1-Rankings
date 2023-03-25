@@ -1,13 +1,9 @@
 body {
-    background-color: white;
-    margin: 0px
-}
-
-html {
-    background-color: white;
+  background-color: gray;
+  margin: 0px;
 }
 
 @font-face {
-    font-family: Titllium;
-    src: url(fonts/Formula1-Regular.otf);
+  font-family: Titllium;
+  src: url(fonts/Formula1-Regular.otf);
 }

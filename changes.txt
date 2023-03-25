@@ -1,0 +1,9 @@
+<fragment> = <>
+indent 2 spaces
+SRP / SOLID / https://blog.logicwind.com/implement-atomic-design-component-in-react/
+npx generate-react-cli component ComponentName
+pluralise components if they represent a list of data
+prefix component names with their 
+CTRL + p - search by file name
+CTRL + shift + p - config
+convert component from: export default function PageContainer --> const Standings / export default Standings: at the bottom

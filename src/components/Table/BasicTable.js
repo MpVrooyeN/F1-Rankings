@@ -1,39 +1,45 @@
-import React, { useMemo } from 'react'
-import { useTable } from 'react-table'
-import './Table.css'
-import MaUTable from '@material-ui/core/Table'
-import { TableBody, TableHead, TableRow } from '@mui/material';
+import React from "react";
+import { useTable } from "react-table";
+import MaUTable from "@material-ui/core/Table";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 
-export default function BasicTable(props) {
-    const data = props[0].tableData;
-    const columns = useMemo(() => props[0].col, [props])
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data })
+import "./Table.css";
 
-    return (
-        <MaUTable {...getTableProps}>
-            <TableHead>
-                {headerGroups.map((headerGroup) => (
-                    <TableRow {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map((column) => (
-                            <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                        ))}
-                    </TableRow>
-                ))
-                }
-            </TableHead>
-            <TableBody {...getTableBodyProps()}>
-                {rows.map((row) => {
-                    prepareRow(row)
-                    return (
-                        <TableRow {...row.getRowProps()}>
-                            {row.cells.map((cell) => {
-                                return (
-                                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>)
-                            })
-                            }
-                        </TableRow>)
-                })}
-            </TableBody>
-        </MaUTable>
-    )
+export default function BasicTable({ data, columns }) {
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({ columns, data });
+
+  // #TODO: understand why columns must use useMemo
+
+  return (
+    <MaUTable {...getTableProps}>
+      <TableHead>
+        {headerGroups.map((headerGroup) => (
+          <TableRow {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <TableCell {...column.getHeaderProps()}>
+                {column.render("Header")}
+              </TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableHead>
+      <TableBody {...getTableBodyProps()}>
+        {rows.map((row) => {
+          prepareRow(row);
+          return (
+            <TableRow {...row.getRowProps()}>
+              {row.cells.map((cell) => {
+                return (
+                  <TableCell {...cell.getCellProps()}>
+                    {cell.render("Cell")}
+                  </TableCell>
+                );
+              })}
+            </TableRow>
+          );
+        })}
+      </TableBody>
+    </MaUTable>
+  );
 }
