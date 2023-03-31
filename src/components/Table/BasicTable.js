@@ -5,6 +5,7 @@ import MaUTable from '@material-ui/core/Table'
 import { TableBody, TableHead, TableRow } from '@mui/material';
 
 export default function BasicTable(props) {
+    console.log(props)
     const data = props[0].tableData;
     const columns = useMemo(() => props[0].col, [props])
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data })
